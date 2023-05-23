@@ -18,9 +18,9 @@ public class PersonnelService {
     @Autowired
     private PersonnelDBRepository filePersonnelDBRepository;
 
-    public Personnel store(MultipartFile file, String prenom, String pnom, LocalDate datenaiss,LocalDate daterecrute, String decisionRecrutement,String cin,String cnrps,String rib,String etat) throws IOException {
+    public Personnel store(String matricule,MultipartFile file, String prenom, String pnom, LocalDate datenaiss,LocalDate daterecrute, String decisionRecrutement,String cin,String cnrps,String rib,String etat) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        Personnel Personnel = new Personnel(fileName, file.getContentType(), file.getBytes(),prenom,pnom,datenaiss,daterecrute,decisionRecrutement,cin,cnrps,rib,etat);
+        Personnel Personnel = new Personnel(matricule,fileName, file.getContentType(), file.getBytes(),prenom,pnom,datenaiss,daterecrute,decisionRecrutement,cin,cnrps,rib,etat);
 
         return filePersonnelDBRepository.save(Personnel);
     }

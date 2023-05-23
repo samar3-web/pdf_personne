@@ -11,7 +11,7 @@ public class ResponseFile {
     private long size;
     private String id;
     private String prenom;
-
+    private String matricule;
     private String pnom;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate datenaiss = LocalDate.now();
@@ -23,7 +23,7 @@ public class ResponseFile {
     private String rib;
     private String etat;
 
-    public ResponseFile(String name, String url, String type, long size, String id, String prenom, String pnom, LocalDate datenaiss, LocalDate daterecrute, String decisionRecrutement, String cin, String cnrps, String rib, String etat) {
+    public ResponseFile(String name, String url, String type, long size, String id, String prenom, String pnom, LocalDate datenaiss, LocalDate daterecrute, String decisionRecrutement, String cin, String cnrps, String rib, String etat,String matricule) {
         this.name = name;
         this.url = url;
         this.type = type;
@@ -38,6 +38,7 @@ public class ResponseFile {
         this.cnrps = cnrps;
         this.rib = rib;
         this.etat = etat;
+        this.matricule = matricule;
     }
 
     public String getName() {
@@ -152,5 +153,13 @@ public class ResponseFile {
 
     public void setDaterecrute(LocalDate daterecrute) {
         this.daterecrute = daterecrute;
+    }
+
+    public String getMatricule() {
+        return matricule;
+    }
+
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
     }
 }

@@ -13,7 +13,7 @@ public class Personnel {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-
+    private String matricule ;
     private String name;
 
     private String type;
@@ -38,8 +38,8 @@ public class Personnel {
     }
 
 
-
-    public Personnel(String name, String type, byte[] data, String prenom, String pnom, LocalDate datenaiss, LocalDate daterecrute, String decisionRecrutement, String cin, String cnrps, String rib, String etat) {
+    public Personnel(String matricule, String name, String type, byte[] data, String prenom, String pnom, LocalDate datenaiss, LocalDate daterecrute, String decisionRecrutement, String cin, String cnrps, String rib, String etat) {
+        this.matricule = matricule;
         this.name = name;
         this.type = type;
         this.data = data;
@@ -156,5 +156,13 @@ public class Personnel {
 
     public void setEtat(String etat) {
         this.etat = etat;
+    }
+
+    public String getMatricule() {
+        return matricule;
+    }
+
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
     }
 }

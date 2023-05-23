@@ -19,14 +19,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@CrossOrigin("http://localhost:8081")
+@CrossOrigin("http://localhost:4200")
 public class PersonnelController {
 
     @Autowired
     private PersonnelService storageService;
 
     @PostMapping("/upload")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file,
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("matricule") String matricule,
+                                                      @RequestParam("file") MultipartFile file,
                                                       @RequestParam("prenom") String prenom,
                                                       @RequestParam("pnom") String pnom,
                                                       @RequestParam("datenaiss") LocalDate datenaiss,
@@ -39,7 +40,7 @@ public class PersonnelController {
         String message = "";
         try {
             // Save the file with the prenom
-            storageService.store(file, prenom,pnom,datenaiss,daterecrute,decisionRecrutement,cin,cnrps,rib,etat);
+            storageService.store(matricule,file, prenom,pnom,datenaiss,daterecrute,decisionRecrutement,cin,cnrps,rib,etat);
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename() + ". First Name: " + prenom;
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
@@ -74,7 +75,8 @@ public class PersonnelController {
                     dbFile.getCin(),
                     dbFile.getCnrps(),
                     dbFile.getRib(),
-                    dbFile.getEtat());
+                    dbFile.getEtat(),
+                    dbFile.getMatricule());
         }).collect(Collectors.toList());
 
         return ResponseEntity.status(HttpStatus.OK).body(files);
