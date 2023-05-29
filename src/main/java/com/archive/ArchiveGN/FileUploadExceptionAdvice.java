@@ -1,6 +1,6 @@
-package io.getarrays.fileuploadanddownload;
+package com.archive.ArchiveGN;
 
-import io.getarrays.fileuploadanddownload.message.ResponseMessage;
+import com.archive.ArchiveGN.message.ResponseMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

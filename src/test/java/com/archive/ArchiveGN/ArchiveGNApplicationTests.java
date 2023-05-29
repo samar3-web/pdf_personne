@@ -1,10 +1,10 @@
-package io.getarrays.fileuploadanddownload;
+package com.archive.ArchiveGN;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FileuploadanddownloadApplicationTests {
+class ArchiveGNApplicationTests {
 
 	@Test
 	void contextLoads() {

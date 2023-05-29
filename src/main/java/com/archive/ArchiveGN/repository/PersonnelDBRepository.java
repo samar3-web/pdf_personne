@@ -1,6 +1,6 @@
-package io.getarrays.fileuploadanddownload.repository;
+package com.archive.ArchiveGN.repository;
 
-import io.getarrays.fileuploadanddownload.model.Personnel;
+import com.archive.ArchiveGN.model.Personnel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

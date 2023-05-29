@@ -1,4 +1,4 @@
-package io.getarrays.fileuploadanddownload.message;
+package com.archive.ArchiveGN.message;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

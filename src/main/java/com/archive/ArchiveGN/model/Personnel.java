@@ -1,10 +1,14 @@
-package io.getarrays.fileuploadanddownload.model;
+package com.archive.ArchiveGN.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "personnel")
@@ -14,12 +18,6 @@ public class Personnel {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String matricule ;
-    private String name;
-
-    private String type;
-
-    @Lob
-    private byte[] data;
 
     private String prenom;
 
@@ -38,49 +36,26 @@ public class Personnel {
     }
 
 
-    public Personnel(String matricule, String name, String type, byte[] data, String prenom, String pnom, LocalDate datenaiss, LocalDate daterecrute, String decisionRecrutement, String cin, String cnrps, String rib, String etat) {
-        this.matricule = matricule;
-        this.name = name;
-        this.type = type;
-        this.data = data;
-        this.prenom = prenom;
-        this.pnom = pnom;
-        this.datenaiss = datenaiss;
-        this.daterecrute = daterecrute;
-        this.decisionRecrutement = decisionRecrutement;
-        this.cin = cin;
-        this.cnrps = cnrps;
-        this.rib = rib;
-        this.etat = etat;
+
+    public List<DemandeMutation> getDemandeMutationsliee() {
+        return demandeMutationsliee;
     }
+    public void setDemandeMutationsliee(List<DemandeMutation> demandeMutationsliee) {
+        this.demandeMutationsliee = demandeMutationsliee;
+    }
+
+    @OneToMany(mappedBy="personnel",fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JsonIgnore
+    private List<DemandeMutation>demandeMutationsliee;
+
+
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
-    }
 
     public String getPrenom() {
         return prenom;
@@ -165,4 +140,6 @@ public class Personnel {
     public void setMatricule(String matricule) {
         this.matricule = matricule;
     }
+
+
 }
