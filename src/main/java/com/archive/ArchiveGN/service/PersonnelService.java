@@ -12,11 +12,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
 
-@Service
-public class PersonnelService {
-
-    @Autowired
-    private PersonnelDBRepository filePersonnelDBRepository;
-
-
+public interface PersonnelService {
+    Personnel savePersonnel(Personnel personnel);
+    Personnel updatePersonnel(Personnel personnel);
+    void deletePersonnel(Personnel personnel);
+    void deletePersonnelById(int matricule);
+    Personnel getPersonnelById(int matricule);
+    List<Personnel> getAllPersonnel();
 }
+

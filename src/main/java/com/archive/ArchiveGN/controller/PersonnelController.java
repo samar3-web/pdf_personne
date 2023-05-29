@@ -17,13 +17,44 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
+
+@RequestMapping("/personnel")
+@RestController
 @CrossOrigin("http://localhost:4200")
 public class PersonnelController {
 
     @Autowired
     private PersonnelService storageService;
 
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Personnel> getAllPersonnel(){
+        return storageService.getAllPersonnel();
+    }
+
+
+    @RequestMapping(value = "/{matricule}",method = RequestMethod.GET)
+    public Personnel getPersonnelById(@PathVariable(value = "matricule") int matricule){
+        return storageService.getPersonnelById(matricule);
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST)
+    public Personnel createPersonnel(@RequestBody Personnel personnel){
+        return storageService.savePersonnel(personnel);
+    }
+
+
+    @RequestMapping(value="/{matricule}" ,method = RequestMethod.PUT)
+    public Personnel updatePersonnel(@RequestBody Personnel personnel,@PathVariable(value = "matricule") int matricule){
+        personnel.setMatricule(matricule);
+        return storageService.updatePersonnel(personnel);
+    }
+
+    @RequestMapping(value="/{idPersonnel}",method = RequestMethod.DELETE)
+    public void deletePersonnelById(@PathVariable(value = "idPersonnel") int id){
+        storageService.deletePersonnelById(id);
+    }
 
 
 
