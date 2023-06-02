@@ -15,8 +15,7 @@ public class DemandeMutation {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateinsert = LocalDate.now();
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date datedemande;
+    private String datedemande;
 
     private String cause;
     private String decision;
@@ -35,12 +34,11 @@ public class DemandeMutation {
     public DemandeMutation() {
     }
 
-    public DemandeMutation(LocalDate dateinsert, Date datedemande, String cause, String decision, Personnel personnel, String name, String type, byte[] data) {
-        this.dateinsert = dateinsert;
-        this.datedemande = datedemande;
+    public DemandeMutation( String cause, String decision, String name, String type, byte[] data, String datedemande) {
+
         this.cause = cause;
         this.decision = decision;
-        this.personnel = personnel;
+        this.datedemande=datedemande;
         this.name = name;
         this.type = type;
         this.data = data;
@@ -58,13 +56,7 @@ public class DemandeMutation {
         this.dateinsert = dateinsert;
     }
 
-    public Date getDatedemande() {
-        return datedemande;
-    }
 
-    public void setDatedemande(Date datedemande) {
-        this.datedemande = datedemande;
-    }
 
 
     public String getType() {

@@ -25,9 +25,9 @@ public class DemandeMutationService {
     }
 
 
-    public DemandeMutation saveDemandeMutation(MultipartFile file, LocalDate dateinsert, Date datedemande, String cause, String decision,Personnel personnel) throws IOException {
+    public DemandeMutation saveDemandeMutation(MultipartFile file, String cause, String decision ,String datedemande) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        DemandeMutation DemandeMutation = new DemandeMutation(dateinsert,datedemande,cause,decision,personnel,fileName,file.getContentType(), file.getBytes());
+        DemandeMutation DemandeMutation = new DemandeMutation(cause,decision,fileName,file.getContentType(), file.getBytes(),datedemande);
 
         return demandeMutationRepository.save(DemandeMutation);
     }

@@ -6,6 +6,7 @@ import com.archive.ArchiveGN.model.Personnel;
 import com.archive.ArchiveGN.service.DemandeMutationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -31,17 +32,15 @@ public class DemandeMutationController {
     }
 
 
-    @PostMapping
+    @PostMapping( consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ResponseMessage> createDemandeMutation(@RequestParam("file") MultipartFile file,
-                                                                 @RequestParam("dateinsert") LocalDate dateinsert,
-                                                                 @RequestParam("datedemande") Date datedemande,
                                                                  @RequestParam("decision")String decision,
                                                                  @RequestParam("cause") String cause,
-                                                                 @RequestParam("personnel") Personnel personnel
+                                                                 @RequestParam("datedemande") String datedemande
                                                                  ) {
         String message = "";
         try {
-            demandeMutationService.saveDemandeMutation(file,dateinsert,datedemande,decision,cause,personnel);
+            demandeMutationService.saveDemandeMutation(file,decision,cause,datedemande);
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
