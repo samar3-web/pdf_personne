@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -36,11 +37,12 @@ public class DemandeMutationController {
     public ResponseEntity<ResponseMessage> createDemandeMutation(@RequestParam("file") MultipartFile file,
                                                                  @RequestParam("decision")String decision,
                                                                  @RequestParam("cause") String cause,
-                                                                 @RequestParam("datedemande") String datedemande
+                                                                 @RequestParam("datedemande") String datedemande,
+                                                                 @RequestParam("personnel") Personnel personnel
                                                                  ) {
         String message = "";
         try {
-            demandeMutationService.saveDemandeMutation(file,decision,cause,datedemande);
+            demandeMutationService.saveDemandeMutation(file,cause,decision,datedemande,personnel);
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));

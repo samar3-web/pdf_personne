@@ -34,7 +34,7 @@ public class DemandeMutation {
     public DemandeMutation() {
     }
 
-    public DemandeMutation( String cause, String decision, String name, String type, byte[] data, String datedemande) {
+    public DemandeMutation( String cause, String decision, String name, String type, byte[] data, String datedemande,Personnel personnel) {
 
         this.cause = cause;
         this.decision = decision;
@@ -42,6 +42,7 @@ public class DemandeMutation {
         this.name = name;
         this.type = type;
         this.data = data;
+        this.personnel = personnel;
     }
 
     public int getIdDemandeMutation() {
