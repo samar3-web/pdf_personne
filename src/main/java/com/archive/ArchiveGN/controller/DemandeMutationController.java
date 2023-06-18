@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/demande-mutations")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 
 public class DemandeMutationController {
     private final DemandeMutationService demandeMutationService;

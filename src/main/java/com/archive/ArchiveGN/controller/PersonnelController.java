@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RequestMapping("/personnel")
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 public class PersonnelController {
 
     @Autowired
