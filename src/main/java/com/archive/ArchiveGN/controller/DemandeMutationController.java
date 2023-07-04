@@ -9,14 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.bind.SchemaOutputResolver;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,16 +28,20 @@ public class DemandeMutationController {
     }
 
 
+
     @PostMapping( consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ResponseMessage> createDemandeMutation(@RequestParam("file") MultipartFile file,
                                                                  @RequestParam("decision")String decision,
                                                                  @RequestParam("cause") String cause,
                                                                  @RequestParam("datedemande") String datedemande,
-                                                                 @RequestParam("personnel") Personnel personnel
-                                                                 ) {
+                                                                 @RequestParam("personnel") Personnel personnel,
+                                                                 @RequestParam("Dname") String Dname,
+                                                                 @RequestParam("Dtype") String Dtype
+
+    ) {
         String message = "";
         try {
-            demandeMutationService.saveDemandeMutation(file,cause,decision,datedemande,personnel);
+            demandeMutationService.saveDemandeMutation(file,cause,decision,datedemande,personnel,Dname,Dtype);
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
@@ -52,11 +51,23 @@ public class DemandeMutationController {
         }
     }
 
-    @GetMapping
+
+    @GetMapping()
     public ResponseEntity<List<DemandeMutation>> getAllDemandeMutations() {
-        List<DemandeMutation> demandeMutations = demandeMutationService.getAllDemandeMutations();
-        return ResponseEntity.ok(demandeMutations);
+        try {
+            List<DemandeMutation> demandeMutations = demandeMutationService.getAllDemandeMutations();
+            if (!demandeMutations.isEmpty()) {
+                return ResponseEntity.ok(demandeMutations);
+            } else {
+                return ResponseEntity.noContent().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<DemandeMutation> getDemandeMutationById(@PathVariable int id) {

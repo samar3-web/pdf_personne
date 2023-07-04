@@ -21,9 +21,6 @@ import java.util.List;
 @Table(name = "personnel")
 public class Personnel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPersonnel;
-
     private int matricule;
     private String nom;
     private String pnom;
@@ -36,7 +33,7 @@ public class Personnel {
     private String rib;
     private String etat;
     private String decisionRecrutement;
-    private byte[] pdfPers;
+
 
 
 

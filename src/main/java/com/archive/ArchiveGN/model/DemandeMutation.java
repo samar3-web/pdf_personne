@@ -20,6 +20,9 @@ public class DemandeMutation {
     private String cause;
     private String decision;
 
+    private String Dname;
+    private String Dtype;
+
     @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name="personnel")
     private Personnel personnel;
@@ -34,7 +37,9 @@ public class DemandeMutation {
     public DemandeMutation() {
     }
 
-    public DemandeMutation( String cause, String decision, String name, String type, byte[] data, String datedemande,Personnel personnel) {
+
+
+    public DemandeMutation( String cause, String decision, String name, String type, byte[] data, String datedemande,Personnel personnel,String Dname,String Dtype) {
 
         this.cause = cause;
         this.decision = decision;
@@ -43,6 +48,8 @@ public class DemandeMutation {
         this.type = type;
         this.data = data;
         this.personnel = personnel;
+        this.Dname=Dname;
+        this.Dtype=Dtype;
     }
 
     public int getIdDemandeMutation() {
@@ -116,5 +123,21 @@ public class DemandeMutation {
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public String getDname() {
+        return Dname;
+    }
+
+    public void setDname(String dname) {
+        Dname = dname;
+    }
+
+    public String getDtype() {
+        return Dtype;
+    }
+
+    public void setDtype(String dtype) {
+        Dtype = dtype;
     }
 }
